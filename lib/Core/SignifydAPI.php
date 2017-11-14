@@ -92,7 +92,7 @@ class SignifydAPI
         if ($this->checkResultError($info['http_code'], $response)) {
             return false;
         }
-        return json_decode($response)->investigationId;
+        return json_decode($response);
     }
 
     public function getCase($caseId, $entry = null)
@@ -224,6 +224,23 @@ class SignifydAPI
 
         return false;
     }
+
+    public function createMerchantAccount($merchant)
+    {
+        $curl = $this->_setupPostJsonRequest($this->makeUrl("merchants"), $merchant);
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        $this->logInfo("Raw Request: " . json_encode($info));
+
+        $error = curl_error($curl);
+        curl_close($curl);
+
+        if ($this->checkResultError($info['http_code'], $response)) {
+            return false;
+        }
+        return json_decode($response)->investigationId;
+    }
+
 
     private function _setupRequestCommon($url)
     {
