@@ -227,7 +227,7 @@ class SignifydAPI
 
     public function createMerchantAccount($merchant)
     {
-        $curl = $this->_setupPostJsonRequest($this->makeUrl("merchants"), $merchant);
+        $curl = $this->_setupPostJsonRequest($this->makeUrl("partner/merchants"), $merchant);
         $response = curl_exec($curl);
         $info = curl_getinfo($curl);
         $this->logInfo("Raw Request: " . json_encode($info));
