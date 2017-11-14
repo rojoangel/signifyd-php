@@ -238,7 +238,7 @@ class SignifydAPI
         if ($this->checkResultError($info['http_code'], $response)) {
             return false;
         }
-        return json_decode($response)->investigationId;
+        return json_decode($response);
     }
 
 
